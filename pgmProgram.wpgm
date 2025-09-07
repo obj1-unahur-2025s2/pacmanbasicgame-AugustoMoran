@@ -12,11 +12,12 @@ program pacmanGame {
 	
 	// personaje principal
 	//game.addVisualCharacter(pacman)
-	game.addVisual(pacman)
+	game.addVisualCharacter(pacman)
 	keyboard.w().onPressDo({pacman.position(pacman.position().up(1))})
 	keyboard.s().onPressDo({pacman.position(pacman.position().down(1))})
 	keyboard.d().onPressDo({pacman.position(pacman.position().right(1))})
 	keyboard.a().onPressDo({pacman.position(pacman.position().left(1))})
+    keyboard.any().onPressDo({pacman.alternarPacman()})
 	// que arranque el juego!
 	game.start()
 	
