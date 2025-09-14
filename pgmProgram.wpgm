@@ -6,23 +6,25 @@ program pacmanGame {
 	game.title("Pacman!")
 	
 	// límites del juego
-	game.width(14)
-	game.height(8)
+	game.width(14)//x
+	game.height(8)//y
 	
 	// fondo
 	game.boardGround("pacmanBackground.jpg")
 	
 	// personaje principal
 	game.addVisualCharacter(pacman)
-	
-
+    game.onTick(150, "cambiarImagen", {pacman.cambiarPacman()})
+	game.onTick(3500, "sonidoPacman", {sonidoPacman.play()})
 	// rivales
-	const rivales = [new Rival(numero = 1), new Rival(numero = 2)]
+	const rivales = [fantasmaRojo, fantasmaAzul]
 	
 	rivales.forEach { rival => 
 		game.addVisual(rival)
+	    game.onTick(1000, "moverAleatoriamente", {rival.moverAleatoriamente()})
 		game.whenCollideDo(rival, { personaje =>
 			personaje.perderVida()
+			
 			game.say(pacman, "Ups! Perdí una vida")
 			if (personaje.juegoTerminado()) {
 				game.say(pacman, "Se me terminaron las vidas!!!")
@@ -30,6 +32,7 @@ program pacmanGame {
 			}
 		})
 	}
+
 	
 	// que arranque el juego!
 	game.start()
