@@ -29,10 +29,12 @@ program pacmanGame {
 			if (personaje.juegoTerminado()) {
 				game.say(pacman, "Se me terminaron las vidas!!!")
 				game.onTick(5000, "gameEnd", { game.stop() })
+				game.addVisual(gameOver)
+				game.onTick(1000, "moverAleatoriamente", {gameOver.moverAleatoriamente()})
 			}
 		})
 	}
-
+    
 	
 	// que arranque el juego!
 	game.start()

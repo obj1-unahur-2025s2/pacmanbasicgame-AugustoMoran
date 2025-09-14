@@ -117,4 +117,50 @@ method moverHaciaAbajo() {
 		self.moverHaciaAbajo()
 	}
   }
+
+}
+object gameOver {
+  var property image = "gameOver.jpg"
+  var property position = game.center()
+   method moverHaciaArriba() {
+	if(self.position().y() == game.height()-1){
+		self.position(game.at(self.position().x(),0))
+	} else{
+		self.position(self.position().up(1))
+	}
+  }
+  method moverHaciaDerecha() {
+	if(self.position().x() == game.width()-1){
+		self.position(game.at(0,self.position().y()))
+	}else{
+       self.position(self.position().right(1))
+	}
+  }
+  method moverHaciaIzquierda() {
+	if(self.position().x() == 0){
+	 self.position(game.at(game.width()-1,self.position().y()))
+	}else {
+		self.position(self.position().left(1))
+	}
+  }
+method moverHaciaAbajo() {
+   if (self.position().y() == 0) {
+      self.position(game.at(self.position().x(), game.height()-1))
+   } else {
+      self.position(self.position().down(1))
+   }
+}
+
+  method moverAleatoriamente() {
+	const direccion = (0..3).anyOne()
+	if (direccion == 0){
+		self.moverHaciaArriba()
+	}else if(direccion == 1){
+		self.moverHaciaDerecha()
+	}else if(direccion == 2){
+		self.moverHaciaIzquierda()
+	} else {
+		self.moverHaciaAbajo()
+	}
+  }
 }
